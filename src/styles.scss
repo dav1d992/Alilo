@@ -1,0 +1,248 @@
+/* Basic reset and container styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.gift-list {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    background-image: url("assets/ali1.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative; /* Ensure overlay text is visible on top of background */
+}
+
+.gift-list::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent dark overlay */
+    border-radius: 8px;
+    z-index: -1; /* Place the overlay behind content */
+}
+
+h1 {
+    font-size: 2rem;
+    color: #add8e6; /* Light Blue color */
+    text-align: center;
+    margin-bottom: 20px;
+    text-shadow:
+        2px 2px 4px rgba(0, 0, 0, 0.7),
+        /* Outer shadow */ -2px -2px 4px rgba(0, 0, 0, 0.7),
+        /* Outer shadow */ 1px 1px 2px rgba(0, 0, 0, 0.8),
+        /* Inner shadow */ -1px -1px 2px rgba(0, 0, 0, 0.8); /* Inner shadow */
+}
+
+/* Gift Items Section */
+.gift-items {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.gift-item {
+    background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent background */
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    position: relative; /* Make the container a positioning context */
+}
+
+p {
+    font-size: 1rem;
+    color: #000000;
+}
+
+strong {
+    font-weight: bold;
+    color: #000000;
+}
+
+a {
+    color: #1a73e8;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Buy Form Section */
+.buy-form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.2rem;
+    height: 1rem;
+}
+
+/* Buyer Info */
+.buyer-info {
+    font-style: italic;
+    color: #888;
+}
+
+/* New Gift Form Section */
+.new-gift-form {
+    background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent background */
+    padding-top: 0.2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 1rem;
+}
+
+.new-gift-form h2 {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+label {
+    font-size: 1rem;
+    color: #333;
+}
+
+input {
+    padding: 8px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
+}
+
+button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.delete-section {
+    position: absolute; /* Position the delete button absolutely within the .gift-item */
+    top: 10px; /* Distance from the top */
+    right: 10px; /* Distance from the right */
+}
+
+.delete {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.delete:hover {
+    background-color: darkred;
+}
+
+/* Edit Code Section */
+.edit-code-section {
+    margin-top: 40px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.edit-code-section input {
+    padding: 8px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.edit-code-section button {
+    background-color: #2196f3;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.edit-code-section button:hover {
+    background-color: #1976d2;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .gift-list {
+        padding: 15px;
+        margin: 10px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    p,
+    strong {
+        font-size: 0.9rem;
+    }
+
+    input,
+    button {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+
+    .delete {
+        padding: 6px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .gift-list {
+        padding: 10px;
+        margin: 5px;
+    }
+
+    h1 {
+        font-size: 1.25rem;
+    }
+
+    p,
+    strong {
+        font-size: 0.8rem;
+    }
+
+    input,
+    button {
+        font-size: 0.8rem;
+        padding: 8px;
+    }
+
+    .delete {
+        padding: 5px 10px;
+    }
+}

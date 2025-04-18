@@ -1,0 +1,101 @@
+<div class="gift-list">
+  <div class="header">
+    <h1>Alis Ønskeliste</h1>
+    <div class="wrapper">
+      <input
+        type="password"
+        id="editCode"
+        [(ngModel)]="editCode"
+        placeholder="Admin kode"
+      />
+      <button (click)="checkCode()">Bekræft</button>
+    </div>
+  </div>
+
+  <div class="gift-items">
+    @for (gift of gifts; track gift.id) {
+    <div class="gift-item">
+      <p><strong>Gave: </strong> {{ gift.name }}</p>
+      <p>
+        <strong>Link: </strong>
+        <a [href]="gift.link" target="_blank">{{
+          gift.link | truncate : 44
+        }}</a>
+      </p>
+      <p><strong>Pris: </strong> {{ gift.price }}</p>
+      <div *ngIf="gift.buyerName; else buyForm" class="buyer-info">
+        <p><strong>Reserveret af: </strong> {{ gift.buyerName }}</p>
+      </div>
+
+      <ng-template #buyForm>
+        <form
+          class="buy-form"
+          (ngSubmit)="buyGift(gift.id, tempBuyerNames[gift.id])"
+        >
+          <label for="buyerName{{ gift.id }}"><strong>Navn: </strong></label>
+          <input
+            type="text"
+            id="buyerName{{ gift.id }}"
+            [(ngModel)]="tempBuyerNames[gift.id]"
+            name="buyerName{{ gift.id }}"
+            placeholder="Indtast dit navn"
+            required
+          />
+          <button [disabled]="!tempBuyerNames[gift.id]?.trim()">
+            Reservér
+          </button>
+        </form>
+      </ng-template>
+
+      <div *ngIf="canEdit" class="delete-section">
+        <button class="delete" (click)="deleteGift(gift.id)">Slet</button>
+      </div>
+    </div>
+    }
+  </div>
+
+  <div *ngIf="canEdit" class="new-gift-form">
+    <h2>Tilføj en ny gave</h2>
+    <form (ngSubmit)="addGift(gift)">
+      <div class="form-group">
+        <label for="giftName"><strong>Gave: </strong></label>
+        <input
+          type="text"
+          id="giftName"
+          [(ngModel)]="gift.name"
+          name="name"
+          placeholder="Indtast gavens navn"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="giftPrice"><strong>Pris: </strong></label>
+        <input
+          type="number"
+          id="giftPrice"
+          [(ngModel)]="gift.price"
+          name="price"
+          placeholder="Indtast gavens pris"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="giftLink"><strong>Link: </strong></label>
+        <input
+          type="url"
+          id="giftLink"
+          [(ngModel)]="gift.link"
+          name="link"
+          placeholder="Indtast link til gave"
+          required
+        />
+      </div>
+      <button
+        type="submit"
+        [disabled]="!gift.name || !gift.link || !gift.price"
+      >
+        Tilføj
+      </button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 1rem;
+    padding: 1rem;
+}
+
+.wrapper {
+    display: flex;
+    gap: 0.2rem;
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
